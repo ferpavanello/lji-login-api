@@ -1,0 +1,22 @@
+{
+  "name": "lji-login-api",
+  "version": "1.0.0",
+  "description": "GraphQL API to the login app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "clear": "rm -rf node_modules && rm package-lock.json"
+  },
+  "author": "ferpavanello",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource-mongodb": "^0.4.3",
+    "apollo-server": "^3.0.0",
+    "graphql": "^15.5.1",
+    "mongoose": "^5.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
