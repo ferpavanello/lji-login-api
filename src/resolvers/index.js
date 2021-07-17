@@ -12,6 +12,7 @@ module.exports = {
         attempts: user.attempts
       }
     },
+
     userByNameEmail: async (root, args, { dataSources }) => {
       const users = await dataSources.users.findByFields(args)
       console.log(users.length)
@@ -26,6 +27,18 @@ module.exports = {
           attempts: user.attempts
         }
       })
+    }
+  },
+
+  Mutation: {
+    createUser: async (root, args, { dataSources }) => {
+      const user = await dataSources.users.createUser(args)
+      return {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        attempts: user.attempts
+      }
     }
   }
 }
