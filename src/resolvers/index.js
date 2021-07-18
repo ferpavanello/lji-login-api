@@ -32,7 +32,7 @@ module.exports = {
 
   Mutation: {
     createUser: async (root, args, { dataSources }) => {
-      const user = await dataSources.users.createUser(args)
+      const user = await dataSources.users.createUser(args.newUser)
       return {
         id: user._id,
         name: user.name,

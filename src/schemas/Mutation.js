@@ -1,5 +1,12 @@
 module.exports = `
+  input NewUser {
+    name: String,
+    email: String,
+    password: String,
+    attempts: Int
+  }
+
   type Mutation {
-    createUser(name: String!, email: String!): User!
+    createUser(newUser: NewUser!): User!
   }
 `
