@@ -1,4 +1,5 @@
 require('dotenv').config()
+const port = process.env.PORT || 4000
 const { ApolloServer } = require('apollo-server')
 const mongoose = require('mongoose')
 const typeDefs = require('./src/schemas')
@@ -27,7 +28,7 @@ client.then(client => {
     }
   });
 
-  server.listen().then(({ url }) => {
+  server.listen(port).then(({ url }) => {
     console.log(`Server ready at ${url}`)
   })
 })
