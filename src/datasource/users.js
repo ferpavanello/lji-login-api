@@ -14,8 +14,8 @@ class Users extends MongoDataSource {
     })
   }
 
-  findByNameAndEmail(name, email) {
-    return this.collection.findOne({ name, email })
+  findUserByFields(filterFields) {
+    return this.collection.findOne(filterFields)
   }
 }
 

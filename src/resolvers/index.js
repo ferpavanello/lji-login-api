@@ -14,9 +14,8 @@ module.exports = {
       }
     },
 
-    userByNameEmail: async (root, args, { dataSources }) => {
-      const user = await dataSources.users.findByNameAndEmail(args.name, args.email)
-      console.log(user)
+    userByFields: async (root, args, { dataSources }) => {
+      const user = await dataSources.users.findUserByFields(args.filter)
       if (!user) {
         return {}
       }
