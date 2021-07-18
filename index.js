@@ -25,7 +25,8 @@ client.then(client => {
       return {
         users: new Users(client.db.collection('users'))
       }
-    }
+    },
+    playground: true
   });
 
   server.listen(port).then(({ url }) => {
