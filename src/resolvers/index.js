@@ -14,19 +14,17 @@ module.exports = {
     },
 
     userByNameEmail: async (root, args, { dataSources }) => {
-      const users = await dataSources.users.findByFields(args)
-      console.log(users.length)
-      if (!users.length) {
+      const user = await dataSources.users.findByNameAndEmail(args.name, args.email)
+      console.log(user)
+      if (!user) {
         return []
       }
-      return users.map(user => {
         return {
           id: user._id,
           name: user.name,
           email: user.email,
           attempts: user.attempts
         }
-      })
     }
   },
 
