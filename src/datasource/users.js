@@ -38,19 +38,18 @@ class Users extends MongoDataSource {
   }
 
   async login (email, password) {
+    let isLoginCorrect = true
     const user = await this.findUserByFields({ email, password })
     if (!user) {
       this.incrementAttempts({ email })
-      return {
-        isLoginCorrect: false
-      }
+      isLoginCorrect = false
     }
 
-    const isBlocked = Boolean(user && user.attempts >= 3)
-    const isLoginCorrect = Boolean(user)
+    const realUser = await this.findUserByFields({ email })
+    const isBlocked = Boolean(realUser && realUser.attempts >= 3)
     const shouldResetAttempts = isLoginCorrect && !isBlocked
     if (shouldResetAttempts) {
-      this.updateUser({ email: user.email }, { attempts: 0 })
+      this.updateUser({ email: realUser.email }, { attempts: 0 })
     }
 
     return {
