@@ -51,5 +51,9 @@ module.exports = {
         attempts: newUser.attempts
       }
     },
+
+    userLogin: (root, args, { dataSources }) => {
+      return dataSources.users.login(args.email, args.password)
+    }
   }
 }
