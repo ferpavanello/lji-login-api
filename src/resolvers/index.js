@@ -19,13 +19,13 @@ module.exports = {
       if (!user) {
         return {}
       }
-        return {
-          id: user._id,
-          name: user.name,
-          email: user.email,
+      return {
+        id: user._id,
+        name: user.name,
+        email: user.email,
         password: user.password,
-          attempts: user.attempts
-        }
+        attempts: user.attempts
+      }
     }
   },
 
@@ -39,6 +39,17 @@ module.exports = {
         password: user.password,
         attempts: user.attempts
       }
-    }
+    },
+
+    updateUser: async (root, args, { dataSources }) => {
+      const newUser = await dataSources.users.updateUser(args.filter, args.userFields)
+      return {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        password: newUser.password,
+        attempts: newUser.attempts
+      }
+    },
   }
 }

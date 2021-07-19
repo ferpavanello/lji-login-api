@@ -14,6 +14,17 @@ class Users extends MongoDataSource {
     })
   }
 
+  async updateUser(filter, userFields) {
+    const updatedUser = await this.collection.findOneAndUpdate(filter, {
+        $set: userFields
+      }, {
+        new: true
+      }
+    )
+    this.deleteFromCacheById(updatedUser._id)
+    return updatedUser.value
+  }
+
   findUserByFields(filterFields) {
     return this.collection.findOne(filterFields)
   }
